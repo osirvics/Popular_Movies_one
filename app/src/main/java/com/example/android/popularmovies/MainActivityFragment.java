@@ -144,7 +144,13 @@ public class MainActivityFragment extends Fragment implements PaginationAdapterC
         } else {
             TheMoviedbApiService apiService =
                     getClient().create(TheMoviedbApiService.class);
-            Call<Movies> call = apiService.getMovies(BuildConfig.MOVIE_API_KEY, sortBy, currentPage);
+            Call<Movies> call;
+            if(sortBy.contains(Utility.DEESCENDING_POPULARITY)){
+                call = apiService.getPopularMovies(BuildConfig.MOVIE_API_KEY, currentPage);
+            }
+            else{
+                call = apiService.getTopRatedMovies(BuildConfig.MOVIE_API_KEY, currentPage);
+            }
             call.enqueue(new Callback<Movies>() {
                 @Override
                 public void onResponse(Call<Movies> call, Response<Movies> response) {
@@ -173,7 +179,13 @@ public class MainActivityFragment extends Fragment implements PaginationAdapterC
         pageLoadCount +=1;
         TheMoviedbApiService apiService =
                 TheMoviedbClient.getClient().create(TheMoviedbApiService.class);
-        Call<Movies> call = apiService.getMovies(BuildConfig.MOVIE_API_KEY,sortBy, currentPage);
+        Call<Movies> call;
+        if(sortBy.contains(Utility.DEESCENDING_POPULARITY)){
+            call = apiService.getPopularMovies(BuildConfig.MOVIE_API_KEY, currentPage);
+        }
+        else{
+            call = apiService.getTopRatedMovies(BuildConfig.MOVIE_API_KEY, currentPage);
+        }
         call.enqueue(new Callback<Movies>() {
             @Override
             public void onResponse(Call<Movies> call, Response<Movies> response) {
