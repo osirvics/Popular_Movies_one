@@ -7,9 +7,10 @@ import android.preference.PreferenceManager;
  * Created by Victor on 4/4/2017.
  */
 
+
 public class Utility {
-    public static final String DEESCENDING_POPULARITY = "popularity.desc";
-    public static final String VOTE_AVERAGE = "vote_average.desc";
+    public static final String DEESCENDING_POPULARITY = "popular";
+    public static final String VOTE_AVERAGE = "top_rated";
     public static final String SORT_ORDER = "sort_order";
 
     public static String getSortOrder(Context context) {
